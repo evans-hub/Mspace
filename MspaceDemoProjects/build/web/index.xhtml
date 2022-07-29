@@ -1,0 +1,66 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:p="http://primefaces.org/ui">
+    <head>
+        <title>All Records</title> 
+        <style type="text/css">  
+table {  
+border-collapse: collapse; 
+}  
+th, td {  
+text-align: left;  
+padding: 8px;  
+}  
+  
+tr:nth-child(even){background-color: #f2f2f2}  
+th {  
+background-color: #4CAF50;  
+color: white;  
+}  
+</style> 
+    </head>
+    <body>
+    <h:form id="list">
+        
+            <h2><h:outputText value="All Records"/></h2>  
+
+        <p:growl id="growl" sticky="true" />
+        <p:dataTable id="all" var="listing" value="#{model.listAll}" class="table table-striped table-hover table-bordered">
+            <p:column headerText="Id">
+                <h:outputText value="#{listing.id}"/>
+            </p:column>
+
+            <p:column headerText="Email">
+                <p:inputText id="email" value="#{listing.email}"/>
+            </p:column>
+
+            <p:column headerText="Phonenumber">
+                <p:inputText id="phonenumber" value="#{listing.phonenumber}"/>
+            </p:column>
+
+            <p:column headerText="Name">
+                <p:inputText id="name" value="#{listing.name}"/>
+            </p:column>
+
+            <p:column headerText="Location">
+                <h:inputText value="#{listing.location}"/>
+            </p:column>
+            <p:column headerText="Update">
+                <p:commandButton value="Update" action="#{model.edit(listing.id)}"/>
+
+            </p:column>
+
+            <p:column headerText="Delete">
+                <p:commandButton value="Delete" action="#{model.deleteRecords(listing.id)}"/>
+
+            </p:column>
+        </p:dataTable>
+        <p:commandButton  value="Add New" action="#{model.next()}"/>
+    </h:form>
+    </body>
+</html>
+

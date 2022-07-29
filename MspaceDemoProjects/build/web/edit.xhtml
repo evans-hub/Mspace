@@ -1,0 +1,42 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:p="http://primefaces.org/ui">
+    <head>
+        <title>Edit Form</title>
+        <meta charset="UTF-8"></meta>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        </meta>
+    </head>
+    <body>
+        <h:form id="edit"> 
+            <p:growl id="growl" sticky="true" showDetail="true" life="3000" />
+
+            <p:dialog header="Edit Form" widgetVar="dlg" resizable="false">
+                <h:panelGrid columns="2" cellpadding="5">
+                    <h:outputLabel for="email" value="Email:" />
+                    <p:inputText id="email" value="#{recordedit.email}" required="true" label="email"  validatorMessage="EmailRequired">
+
+                        <f:validateRegex pattern="[\w\.-]*[a-zA-Z0-9_]@[\w\.-]*[a-zA-Z0-9]\.[a-zA-Z][a-zA-Z\.]*[a-zA-Z]" />
+                    </p:inputText>
+                    <h:outputLabel for="phonenumber" value="Phonenumber:" />
+                    <p:inputText id="phonenumber" value="#{recordedit.phonenumber}" required="true" label="phonenumber" validatorMessage="Phonenumber Required">
+                        <f:convertNumber integerOnly="true" type="number"/> </p:inputText>
+                    <h:outputLabel for="name" value="Name:" />
+                    <p:inputText id="name" value="#{recordedit.name}" required="true" label="name" validatorMessage="Name Required"/>
+                    <h:outputLabel for="loaction" value="Location:" />
+                    <p:inputText id="location" value="#{recordedit.location}" required="true" label="location" validatorMessage="Location Required"/>
+
+
+                    <f:facet name="footer">
+                        <p:commandButton value="Insert" action="#{model.update(recordedit)}"/>
+                    </f:facet>  
+                </h:panelGrid>
+            </p:dialog>    
+        </h:form>
+    </body>
+</html>
+
